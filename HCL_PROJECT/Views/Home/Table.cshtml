@@ -1,0 +1,82 @@
+﻿@model List<HCL_PROJECT.db_context.hcl_emp>
+@{
+    ViewBag.Title = "Table";
+}
+
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Tables</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        DataTables Advanced Tables
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>address</th>
+                                        <th>email</th>
+                                        <th>salary</th>
+                                        <th>department</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@item.name</td>
+                                            <td>@item.address</td>
+                                            <td>@item.email</td>
+                                            <td>@item.salary</td>
+                                            <td>@item.department</td>
+                                            <td><a href="@Url.Action("edit","Home",new { id = item.id })"><i class="fa fa-edit fa-fw"></i></a></td>
+                                            <td><a href="@Url.Action("delete","Home",new { id =item.id })"><i class="fa fa-trash fa-fw"></i></a></td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<script src="~/Scripts/jsfile/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });</script>
+<style>
+
+</style>
+<script>
+
+</script>

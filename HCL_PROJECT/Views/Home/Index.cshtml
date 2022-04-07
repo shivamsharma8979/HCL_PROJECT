@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+@{ Layout = null; }
+
+
+@model HCL_PROJECT.db_context.login
+
+
+<link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/metisMenu.min.css" rel="stylesheet" />
+<link href="~/Content/css/startmin.css" rel="stylesheet" />
+<link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+<style>
+    .error{
+           color:red;
+    }
+</style>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please Sign In</h3>
+                </div>
+                <div class="has-error">@TempData["invalid"]</div>
+                <div class="has-error">@TempData["wrong"]</div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                    {
+                    <fieldset>
+                        <div class="form-group">
+                            <label>EMAIL</label>
+                            @Html.TextBoxFor(m => m.email, new { @class = "form-control", @placeholder = "EMAIL" , @required = "required" })
+                            @Html.ValidationMessageFor(m => m.email, "", new { @class = "error" })
+                        </div>
+                        <div class="form-group">
+                            <label>PASSWORD</label>
+                            @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "PASSWORD", @required = "required" })
+                            @Html.ValidationMessageFor(m => m.password, "", new { @class = "error" })
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                            </label>
+                        </div>
+                        <!-- Change this to a button or input when using this as a form -->
+                        <button type="submit" class="btn  btn-outline btn-success ">login</button>
+                        <input class="btn  btn-outline btn-primary" type="reset" value="Reset">
+                        <a href="@Url.Action("registration", "Home")" class="btn btn-outline btn-info">registration</a>
+                    </fieldset>
+                    }
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jqueryval")*@
